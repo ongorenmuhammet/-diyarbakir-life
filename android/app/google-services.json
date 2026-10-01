@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "624505734662",
+    "project_id": "diyarbakir-yerel-yasam",
+    "storage_bucket": "diyarbakir-yerel-yasam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624505734662:android:dea589bc29db1e456ba587",
+        "android_client_info": {
+          "package_name": "com.diyarbakir.life"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624505734662-cmbbb8ou33mlos4lpceer9i2mepblpb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diyarbakir.life",
+            "certificate_hash": "72fa450c45c679020a01b1b0ec3f143787b4d156"
+          }
+        },
+        {
+          "client_id": "624505734662-800lhf77rev8n6ukufv6fudelggu03ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLWhjy-K0Wtoz5HJ3NvKDa3v7H4msamzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624505734662-800lhf77rev8n6ukufv6fudelggu03ug.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624505734662-pg1jgfuljmigrh3cn4ar9elf8avsngne.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.diyarbakir.life"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624505734662:android:dea589bc29db1e456ba587",
+        "android_client_info": {
+          "package_name": "com.diyarbakir.life.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624505734662-cmbbb8ou33mlos4lpceer9i2mepblpb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diyarbakir.life.test",
+            "certificate_hash": "235d48e062fa3ef5af90a9ad62870001ea582b5d206496a78656c1d7b9e99f78"
+          }
+        },
+        {
+          "client_id": "624505734662-800lhf77rev8n6ukufv6fudelggu03ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLWhjy-K0Wtoz5HJ3NvKDa3v7H4msamzg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624505734662-800lhf77rev8n6ukufv6fudelggu03ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
