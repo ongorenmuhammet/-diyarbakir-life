@@ -1,7 +1,7 @@
 name: diyarbakir_yerel_yasam
 description: "A new Flutter project."
 publish_to: 'none'
-version: 1.0.2+15
+version: 1.0.3+16
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -41,5 +41,6 @@ dev_dependencies:
 
 
 flutter:
+  uses-material-design: true
   config:
     enable-swift-package-manager: false
