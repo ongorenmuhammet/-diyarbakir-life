@@ -130,15 +130,33 @@ class _SplashLocationScreenState extends State<SplashLocationScreen> with Single
                           ClipRRect(
                             borderRadius: BorderRadius.circular(110),
                             child: Image.asset(
-                              'logo.png',
+                              'assets/logo.png',
                               width: 200,
                               height: 200,
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) => Container(
+                              errorBuilder: (context, error, stackTrace) => Image.asset(
+                                'logo.png',
                                 width: 200,
                                 height: 200,
-                                color: const Color(0xFFB5945B),
-                                child: const Icon(Icons.location_city, size: 80, color: Colors.white),
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) => Container(
+                                  width: 200,
+                                  height: 200,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFF1E1E1E),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '21',
+                                      style: TextStyle(
+                                        color: Color(0xFFFFB300),
+                                        fontSize: 48,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),

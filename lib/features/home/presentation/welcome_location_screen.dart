@@ -22,7 +22,7 @@ class WelcomeLocationScreen extends ConsumerWidget {
               children: [
                 // Logo
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: isDark ? AppTheme.darkSurface : AppTheme.lightSurface,
                     shape: BoxShape.circle,
@@ -34,10 +34,18 @@ class WelcomeLocationScreen extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  child: Icon(
-                    Icons.location_city,
-                    size: 64,
-                    color: theme.colorScheme.primary,
+                  child: ClipOval(
+                    child: Image.asset(
+                      'assets/logo.png',
+                      width: 90,
+                      height: 90,
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => Icon(
+                        Icons.location_city,
+                        size: 64,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),
