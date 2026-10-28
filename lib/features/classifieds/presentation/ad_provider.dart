@@ -1,4 +1,4 @@
-import '../../../core/safety/ugc_safety_provider.dart';
+﻿import '../../../core/safety/ugc_safety_provider.dart';
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +17,15 @@ final adsListProvider = StreamProvider<List<AdModel>>((ref) {
       .collection('ads')
       .snapshots()
       .map((snapshot) {
-    return snapshot.docs.map((doc) => AdModel.fromJson(doc.data())).toList();
+    final list = <AdModel>[];
+    for (final doc in snapshot.docs) {
+      try {
+        list.add(AdModel.fromJson(doc.data()));
+      } catch (e) {
+        debugPrint('Ad parse error (${doc.id}): $e');
+      }
+    }
+    return list;
   });
 });
 
@@ -46,7 +54,7 @@ final filteredAdsProvider = Provider<AsyncValue<List<AdModel>>>((ref) {
   return asyncAds.whenData((ads) {
     final cleanQuery = _cleanTurkish(query);
     final filtered = ads.where((ad) {
-      final isApproved = ad.status == 'approved';
+      final isApproved = ad.status == 'approved' || authState.isAdmin;
       final matchesDistrict = district == 'Diyarbakır' || ad.district == district;
       final matchesCategory = category == 'Hepsi' || ad.category == category;
       final matchesCondition = condition == 'Tümü' || (ad.condition ?? 'İkinci El') == condition;

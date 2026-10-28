@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -183,9 +183,9 @@ class AdsListScreen extends ConsumerWidget {
                                         final picker = ImagePicker();
                                         final XFile? image = await picker.pickImage(
                                           source: ImageSource.gallery,
-                                          maxWidth: 800,
-                                          maxHeight: 800,
-                                          imageQuality: 50,
+                                          maxWidth: 480,
+                                          maxHeight: 480,
+                                          imageQuality: 35,
                                         );
                                         if (image != null) {
                                           final bytes = await image.readAsBytes();

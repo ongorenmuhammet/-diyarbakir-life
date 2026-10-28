@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -152,9 +152,9 @@ class NewsListScreen extends ConsumerWidget {
                                         final picker = ImagePicker();
                                         final XFile? image = await picker.pickImage(
                                           source: ImageSource.gallery,
-                                          maxWidth: 800,
-                                          maxHeight: 800,
-                                          imageQuality: 50,
+                                          maxWidth: 480,
+                                          maxHeight: 480,
+                                          imageQuality: 35,
                                         );
                                         if (image != null) {
                                           final bytes = await image.readAsBytes();
@@ -436,17 +436,18 @@ class NewsListScreen extends ConsumerWidget {
               },
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (err, stack) {
-                return ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  itemCount: defaultDiyarbakirNews.length,
-                  itemBuilder: (context, index) {
-                    final item = defaultDiyarbakirNews[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: _buildNewsCard(context, ref, item),
-                    );
-                  },
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.newspaper_rounded, size: 64, color: theme.colorScheme.primary.withOpacity(0.5)),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Henüz haber bulunmuyor.',
+                        style: theme.textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

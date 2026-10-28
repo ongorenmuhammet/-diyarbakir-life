@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+﻿import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/news_model.dart';
 import '../../../core/constants/districts.dart';
@@ -21,13 +21,10 @@ final newsListProvider = StreamProvider<List<NewsModel>>((ref) {
         debugPrint('Haber okuma hatası (${doc.id}): $e');
       }
     }
-    if (list.isEmpty) {
-      return defaultDiyarbakirNews;
-    }
     return list;
   }).handleError((error) {
     debugPrint('newsListProvider stream error: $error');
-    return defaultDiyarbakirNews;
+    return <NewsModel>[];
   });
 });
 
@@ -42,8 +39,7 @@ final filteredNewsProvider = Provider<AsyncValue<List<NewsModel>>>((ref) {
 
   return newsAsync.when(
     data: (news) {
-      final source = news.isNotEmpty ? news : defaultDiyarbakirNews;
-      final filtered = source.where((item) {
+      final filtered = news.where((item) {
         final matchesDistrict = item.district == targetNewsDistrict || item.district == 'Diyarbakır';
         final matchesCategory = selectedCategory == 'Hepsi' || item.category == selectedCategory;
         final matchesSearch = searchQuery.isEmpty ||
@@ -53,12 +49,12 @@ final filteredNewsProvider = Provider<AsyncValue<List<NewsModel>>>((ref) {
         return matchesDistrict && matchesCategory && matchesSearch;
       }).toList();
       filtered.sort((a, b) => b.id.compareTo(a.id));
-      return AsyncValue.data(filtered.isNotEmpty ? filtered : source);
+      return AsyncValue.data(filtered);
     },
     loading: () => const AsyncValue.loading(),
     error: (err, stack) {
       debugPrint('filteredNewsProvider error fallback: $err');
-      return const AsyncValue.data(defaultDiyarbakirNews);
+      return const AsyncValue.data(<NewsModel>[]);
     },
   );
 });

@@ -1,4 +1,4 @@
-class NewsModel {
+﻿class NewsModel {
   final String id;
   final String title;
   final String summary;
@@ -89,70 +89,4 @@ class NewsModel {
   }
 }
 
-const List<NewsModel> defaultDiyarbakirNews = [
-  NewsModel(
-    id: 'news-fallback-1',
-    title: 'Tarihi Diyarbakır Surları ve Hevsel Bahçeleri Ziyaretçi Akınına Uğruyor',
-    summary: 'UNESCO Dünya Kültür Mirası listesinde yer alan kadim Diyarbakır Surları ve Hevsel Bahçeleri, bu sezon yerli ve yabancı turistlerin yoğun ilgisini çekiyor.',
-    category: 'Kültür',
-    district: 'Diyarbakır',
-    source: 'Kültür & Turizm Bülteni',
-    coverImageUrl: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=800',
-    imageUrls: ['https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=800'],
-    date: 'Bugün',
-    content: 'Diyarbakır Valiliği ve Büyükşehir Belediyesi iş birliğiyle sürdürülen restorasyon çalışmalarının ardından tarihi surlar ve burçlar yeniden ışıldıyor. Kültür turlarının gözdesi haline gelen Sur içi bölgesi, kentin kültürel ve ekonomik canlılığına büyük katkı sağlıyor.',
-    isFeatured: true,
-  ),
-  NewsModel(
-    id: 'news-fallback-2',
-    title: 'Bismil Ovası\'nda Bereketli Pamuk ve Buğday Hasadı Devam Ediyor',
-    summary: 'Güneydoğu\'nun en verimli tarım arazilerine sahip Bismil ilçesinde çiftçiler yeni hasat sezonundan yüksek rekolte bekliyor.',
-    category: 'Genel',
-    district: 'Bismil',
-    source: 'Bismil Tarım Gündemi',
-    coverImageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800',
-    imageUrls: ['https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800'],
-    date: 'Dün',
-    content: 'Modern sulama sistemlerinin yaygınlaşmasıyla birlikte Bismil ovasında verim rekorları kırılıyor. İlçe Tarım Müdürlüğü yetkilileri, sürdürülebilir tarım teknikleri ile çiftçilere tam destek sağlandığını bildirdi.',
-    isFeatured: true,
-  ),
-  NewsModel(
-    id: 'news-fallback-3',
-    title: 'Diyarbakır Şehir İçi Ulaşımında Yeni Çevre Dostu Otobüsler Hizmete Girdi',
-    summary: 'Büyükşehir Belediyesi Ulaşım Daire Başkanlığı, kent içi trafiği rahatlatmak amacıyla modern ve engelli erişimine uygun yeni otobüsleri sefere koydu.',
-    category: 'Belediye',
-    district: 'Diyarbakır',
-    source: 'Büyükşehir Basın Merkezi',
-    coverImageUrl: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800',
-    imageUrls: ['https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800'],
-    date: '2 gün önce',
-    content: 'Yeni araç filosu, özellikle üniversite kampüsü, şehir hastanesi ve merkez ilçeler arasındaki yoğun hatlarda sefer sıklığını artırarak vatandaşlara konforlu bir ulaşım sunuyor.',
-    isFeatured: false,
-  ),
-  NewsModel(
-    id: 'news-fallback-4',
-    title: 'Amedspor Yeni Sezon Hazırlıklarını Şampiyonluk Hedefiyle Sürdürüyor',
-    summary: 'Kentin gururu Amedspor, tesislerinde sürdürdüğü antrenmanlarla yeni lige galibiyet parolasıyla hazırlanıyor.',
-    category: 'Spor',
-    district: 'Diyarbakır',
-    source: 'Diyarbakır Spor Servisi',
-    coverImageUrl: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800',
-    imageUrls: ['https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800'],
-    date: '3 gün önce',
-    content: 'Teknik direktör ve futbolcuların moralinin yüksek olduğu kampta, taraftarların stadyumu doldurarak takıma tam destek vermesi bekleniyor.',
-    isFeatured: false,
-  ),
-  NewsModel(
-    id: 'news-fallback-5',
-    title: 'Tarihi Ongözlü Köprü ve Dicle Vadisi Çevre Düzenleme Projesi Tamamlandı',
-    summary: 'Diyarbakır\'ın simgelerinden tarihi Ongözlü Köprü çevresindeki rekreasyon alanları ve yürüyüş yolları vatandaşların hizmetine açıldı.',
-    category: 'Kültür',
-    district: 'Diyarbakır',
-    source: 'Kent ve Yaşam Bülteni',
-    coverImageUrl: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800',
-    imageUrls: ['https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800'],
-    date: '4 gün önce',
-    content: 'Dicle Nehri kıyısında yapılan yeşillendirme, aydınlatma ve dinlenme alanları, kentin doğal güzelliğini gözler önüne seriyor.',
-    isFeatured: true,
-  ),
-];
+const List<NewsModel> defaultDiyarbakirNews = [];

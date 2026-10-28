@@ -1,4 +1,4 @@
-import '../../../core/safety/ugc_safety_widgets.dart';
+﻿import '../../../core/safety/ugc_safety_widgets.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -205,9 +205,9 @@ class _AdDetailScreenState extends ConsumerState<AdDetailScreen> {
                                         final picker = ImagePicker();
                                         final XFile? image = await picker.pickImage(
                                           source: ImageSource.gallery,
-                                          maxWidth: 800,
-                                          maxHeight: 800,
-                                          imageQuality: 50,
+                                          maxWidth: 480,
+                                          maxHeight: 480,
+                                          imageQuality: 35,
                                         );
                                         if (image != null) {
                                           final bytes = await image.readAsBytes();

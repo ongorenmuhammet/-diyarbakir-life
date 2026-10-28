@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/constants/districts.dart';
@@ -156,10 +156,13 @@ class HomeScreen extends ConsumerWidget {
                 const SizedBox(height: 12),
                 newsAsync.when(
                   loading: () => const Center(child: CircularProgressIndicator()),
-                  error: (err, stack) => _buildNewsHorizontalList(context, defaultDiyarbakirNews),
+                  error: (err, stack) => const SizedBox.shrink(),
                   data: (news) {
                     final featuredNews = news.where((n) => n.isFeatured).toList();
-                    final displayList = featuredNews.isNotEmpty ? featuredNews : (news.isNotEmpty ? news : defaultDiyarbakirNews);
+                    final displayList = featuredNews.isNotEmpty ? featuredNews : news;
+                    if (displayList.isEmpty) {
+                      return const SizedBox.shrink();
+                    }
                     return _buildNewsHorizontalList(context, displayList);
                   }
                 ),

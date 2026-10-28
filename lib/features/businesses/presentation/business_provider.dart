@@ -1,21 +1,28 @@
-import '../../../core/safety/ugc_safety_provider.dart';
-import 'dart:convert';
+﻿import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../core/safety/ugc_safety_provider.dart';
+import '../../../core/auth/auth_provider.dart';
 import '../../../core/constants/districts.dart';
 import '../domain/business_model.dart';
 
 final businessCategoryFilterProvider = StateProvider<String>((ref) => 'Hepsi');
 final businessSearchQueryProvider = StateProvider<String>((ref) => '');
 
-
 final businessesListProvider = StreamProvider<List<BusinessModel>>((ref) {
   return FirebaseFirestore.instance
       .collection('businesses')
       .snapshots()
       .map((snapshot) {
-    return snapshot.docs.map((doc) => BusinessModel.fromJson(doc.data())).toList();
+    final list = <BusinessModel>[];
+    for (final doc in snapshot.docs) {
+      try {
+        list.add(BusinessModel.fromJson(doc.data()));
+      } catch (e) {
+        debugPrint('Business parse error (${doc.id}): $e');
+      }
+    }
+    return list;
   });
 });
 
@@ -25,10 +32,11 @@ final filteredBusinessesProvider = Provider<AsyncValue<List<BusinessModel>>>((re
   final category = ref.watch(businessCategoryFilterProvider);
   final query = ref.watch(businessSearchQueryProvider).toLowerCase();
   final blockedUsers = ref.watch(ugcSafetyProvider);
+  final authState = ref.watch(authProvider);
 
   return asyncList.whenData((list) {
     final filtered = list.where((b) {
-      final isApproved = b.status == 'approved';
+      final isApproved = b.status == 'approved' || authState.isAdmin;
       final matchesDistrict = district == 'Diyarbakır' || b.district == district;
       final matchesCategory = category == 'Hepsi' || b.category == category;
       final matchesQuery = b.name.toLowerCase().contains(query) ||

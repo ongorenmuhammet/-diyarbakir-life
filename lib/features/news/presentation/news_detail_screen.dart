@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -135,9 +135,9 @@ class NewsDetailScreen extends ConsumerWidget {
                                         final picker = ImagePicker();
                                         final XFile? image = await picker.pickImage(
                                           source: ImageSource.gallery,
-                                          maxWidth: 800,
-                                          maxHeight: 800,
-                                          imageQuality: 50,
+                                          maxWidth: 480,
+                                          maxHeight: 480,
+                                          imageQuality: 35,
                                         );
                                         if (image != null) {
                                           final bytes = await image.readAsBytes();
@@ -323,9 +323,14 @@ class NewsDetailScreen extends ConsumerWidget {
 
     return newsAsync.when(
       data: (newsList) {
-        final allList = [...newsList, ...defaultDiyarbakirNews];
-        final itemIndex = allList.indexWhere((element) => element.id == newsId);
-        final item = itemIndex != -1 ? allList[itemIndex] : defaultDiyarbakirNews.first;
+        final itemIndex = newsList.indexWhere((element) => element.id == newsId);
+        if (itemIndex == -1) {
+          return Scaffold(
+            appBar: AppBar(title: const Text('Haber Detayı')),
+            body: const Center(child: Text('Bu haber bulunamadı veya silinmiş.')),
+          );
+        }
+        final item = newsList[itemIndex];
 
         return Scaffold(
             body: CustomScrollView(

@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -36,9 +36,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       final picker = ImagePicker();
       final XFile? image = await picker.pickImage(
         source: ImageSource.gallery,
-        maxWidth: 800,
-        maxHeight: 800,
-        imageQuality: 50,
+        maxWidth: 360,
+        maxHeight: 360,
+        imageQuality: 35,
       );
       if (image != null) {
         final bytes = await image.readAsBytes();

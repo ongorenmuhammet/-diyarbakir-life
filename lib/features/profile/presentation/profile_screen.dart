@@ -1,4 +1,4 @@
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+﻿import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../../../core/safety/ugc_safety_widgets.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -90,9 +90,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       final picker = ImagePicker();
       final XFile? image = await picker.pickImage(
         source: ImageSource.gallery,
-        maxWidth: 800,
-        maxHeight: 800,
-        imageQuality: 70,
+        maxWidth: 360,
+        maxHeight: 360,
+        imageQuality: 35,
       );
       if (image != null) {
         final bytes = await image.readAsBytes();

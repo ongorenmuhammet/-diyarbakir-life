@@ -1,4 +1,4 @@
-import 'dart:convert';
+﻿import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -114,9 +114,9 @@ class _AddEditBusinessScreenState extends ConsumerState<AddEditBusinessScreen> {
       final ImagePicker picker = ImagePicker();
       final XFile? file = await picker.pickImage(
         source: ImageSource.gallery,
-        maxWidth: 800,
-        maxHeight: 800,
-        imageQuality: 50,
+        maxWidth: 480,
+        maxHeight: 480,
+        imageQuality: 35,
       );
       if (file != null) {
         final bytes = await file.readAsBytes();
@@ -192,7 +192,7 @@ class _AddEditBusinessScreenState extends ConsumerState<AddEditBusinessScreen> {
     });
   }
 
-  void _saveBusiness() {
+  Future<void> _saveBusiness() async {
     if (!_formKey.currentState!.validate()) return;
 
     final authState = ref.read(authProvider);
@@ -215,20 +215,32 @@ class _AddEditBusinessScreenState extends ConsumerState<AddEditBusinessScreen> {
       status: authState.isAdmin ? 'approved' : (isEdit ? (widget.business?.status ?? 'pending') : 'pending'),
     );
 
-    FirebaseFirestore.instance.collection('businesses').doc(model.id).set(model.toJson());
+    try {
+      await FirebaseFirestore.instance.collection('businesses').doc(model.id).set(model.toJson());
 
-    final isPending = !authState.isAdmin && (!isEdit || model.status == 'pending');
-    Navigator.of(context).pop();
-
-    if (isPending) {
-      _showApprovalWaitingDialog(context);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(isEdit ? 'İşletme güncellendi.' : 'İşletme eklendi.'),
-          backgroundColor: Colors.green,
-        ),
-      );
+      final isPending = !authState.isAdmin && (!isEdit || model.status == 'pending');
+      if (mounted) {
+        Navigator.of(context).pop();
+        if (isPending) {
+          _showApprovalWaitingDialog(context);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(isEdit ? 'İşletme güncellendi.' : 'İşletme başarıyla yayınlandı.'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Kayıt hatası: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
