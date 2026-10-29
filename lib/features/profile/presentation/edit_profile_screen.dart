@@ -1,4 +1,5 @@
-﻿import 'dart:convert';
+﻿import '../../../core/utils/image_compress_helper.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -42,10 +43,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
       );
       if (image != null) {
         final bytes = await image.readAsBytes();
-        final base64Str = base64Encode(bytes);
-        final mimeType = image.name.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg';
+        final compressed = await ImageCompressHelper.compressAndEncodeBase64(bytes);
         setState(() {
-          _avatarController.text = 'data:$mimeType;base64,$base64Str';
+          _avatarController.text = compressed;
         });
       }
     } catch (_) {}

@@ -1,4 +1,5 @@
-﻿import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+﻿import '../../../core/utils/image_compress_helper.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../../../core/safety/ugc_safety_widgets.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -96,10 +97,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
       );
       if (image != null) {
         final bytes = await image.readAsBytes();
-        final base64Str = base64Encode(bytes);
-        final mimeType = image.name.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg';
+        final compressed = await ImageCompressHelper.compressAndEncodeBase64(bytes);
         setState(() {
-          _selectedAvatarPath = 'data:$mimeType;base64,$base64Str';
+          _selectedAvatarPath = compressed;
         });
       }
     } catch (_) {}

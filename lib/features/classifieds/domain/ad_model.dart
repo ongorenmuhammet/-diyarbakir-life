@@ -1,4 +1,4 @@
-class AdModel {
+﻿class AdModel {
   final String id;
   final String title;
   final String description;
@@ -41,7 +41,7 @@ class AdModel {
       'imageUrls': imageUrls,
       'contactPhone': contactPhone,
       'ownerName': ownerName,
-      'ownerEmail': ownerEmail,
+      'ownerEmail': ownerEmail ?? '',
       'status': status,
       'condition': condition,
     };

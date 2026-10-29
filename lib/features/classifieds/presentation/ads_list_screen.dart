@@ -1,4 +1,5 @@
-﻿import 'dart:convert';
+﻿import '../../../core/utils/image_compress_helper.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -189,10 +190,9 @@ class AdsListScreen extends ConsumerWidget {
                                         );
                                         if (image != null) {
                                           final bytes = await image.readAsBytes();
-                                          final base64Str = base64Encode(bytes);
-                                          final mimeType = image.name.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg';
+                                          final compressedBase64 = await ImageCompressHelper.compressAndEncodeBase64(bytes);
                                           setModalState(() {
-                                            imageUrlsList[index] = 'data:$mimeType;base64,$base64Str';
+                                            imageUrlsList[index] = compressedBase64;
                                           });
                                         }
                                       } catch (_) {}

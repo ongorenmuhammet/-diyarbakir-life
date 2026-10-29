@@ -1,4 +1,4 @@
-class BusinessMenuItem {
+﻿class BusinessMenuItem {
   final String id;
   final String name;
   final String description;
@@ -88,7 +88,7 @@ class BusinessModel {
       'description': description,
       'isFeatured': isFeatured,
       'menu': menu.map((m) => m.toJson()).toList(),
-      'ownerEmail': ownerEmail,
+      'ownerEmail': ownerEmail ?? '',
       'status': status,
     };
   }

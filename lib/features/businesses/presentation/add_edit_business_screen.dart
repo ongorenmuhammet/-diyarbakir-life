@@ -1,4 +1,5 @@
-﻿import 'dart:convert';
+﻿import '../../../core/utils/image_compress_helper.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -120,9 +121,7 @@ class _AddEditBusinessScreenState extends ConsumerState<AddEditBusinessScreen> {
       );
       if (file != null) {
         final bytes = await file.readAsBytes();
-        final base64Str = base64Encode(bytes);
-        final mimeType = file.name.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg';
-        return 'data:$mimeType;base64,$base64Str';
+        return await ImageCompressHelper.compressAndEncodeBase64(bytes);
       }
     } catch (e) {
       debugPrint('Görsel seçme hatası: $e');
